@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import itertools
+import os
 import csv
 
 range_of_tgt_clms = []
@@ -8,6 +9,7 @@ elements_of_tgt = []
 range_of_src_clms = []
 elements_of_src = []
 
+exec(open("/Users/prammitr/Documents/my_projects/DownloadGit_Code.py").read())
 
 def search_target(file_name, string_to_search1, string_to_stop):
     line_number = 0
@@ -46,6 +48,8 @@ def writeTargetToExcel(list):
 
 search_target('/Users/prammitr/Documents/my_projects/input_plSql.sql','insert', 'select')
 printListTarget(range_of_tgt_clms)
+# Sort elements_of_tgt list for matching record
+elements_of_tgt.sort(reverse=False)
 writeTargetToExcel(elements_of_tgt)
 
 
@@ -86,15 +90,11 @@ def writeSourceToExcel(list):
  
 search_source('/Users/prammitr/Documents/my_projects/input_plSql.sql','$.data[*]', 'ROWCOUNT')
 printListSource(range_of_tgt_clms)
+# Sort elements_of_src list for matching record
+elements_of_src.sort(reverse=False)
 writeSourceToExcel(elements_of_src)
 
 test_dict = dict(zip(elements_of_src, elements_of_tgt))
-#print(res)
-# printing original dictionary 
-#print("The original dictionary : " +  str(test_dict)) 
-
-# Iterating through value lists dictionary 
-# Using from_iterable() + product() + items() 
 res = [] 
 for key, value in ( 
         itertools.chain.from_iterable( 
@@ -108,3 +108,11 @@ with open('/Users/prammitr/Documents/my_projects/dict.csv', 'w', newline="") as 
     for key, value in test_dict.items():
        writer.writerow([key, value])
 
+os.system("awk 'NR%3' /Users/prammitr/Documents/my_projects/dict.csv > /Users/prammitr/Documents/my_projects/output.csv")
+
+#sed 's/[,]//g' output.csv -- Comma Remove
+#sed -e 's|["'\'']||g' output.csv  -- Single Quote Remove
+# sed 's/\"//g' output.csv  -- Double Quotes Remove
+# sed 's/ //g' test2 -- remove space
+# awk 'NR%2{printf "%s ",$0;next;}1' test2 -- Merge every two lines
+# cat test3 | sed -e 's/^[ \t]*//' -- Remove leading spaces
