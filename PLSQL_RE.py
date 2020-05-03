@@ -3,6 +3,7 @@
 import itertools
 import os
 import csv
+import subprocess
 
 range_of_tgt_clms = []
 elements_of_tgt = []
@@ -34,7 +35,7 @@ def search_target(file_name, string_to_search1, string_to_stop):
 
 
 def printListTarget(list):
-    with open('/Users/prammitr/Documents/my_projects/python/input_plSql.sql', "r") as text_file:
+    with open('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql', "r") as text_file:
       #for line in itertools.islice(text_file, 15, 38):
       for line in itertools.islice(text_file, *range_of_tgt_clms):
         #elements_of_tgt.append((line.rstrip().lstrip()))
@@ -43,11 +44,11 @@ def printListTarget(list):
         
 
 def writeTargetToExcel(list):
-  with open('/Users/prammitr/Documents/my_projects/python/Target.csv','w') as f:
+  with open('/Users/prammitr/Documents/my_projects/python/temp/Target.csv','w') as f:
     f.write('\n'.join(list))
 
 
-search_target('/Users/prammitr/Documents/my_projects/python/input_plSql.sql','insert', 'select')
+search_target('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql','insert', 'select')
 printListTarget(range_of_tgt_clms)
 # Sort elements_of_tgt list for matching record
 elements_of_tgt.sort(reverse=False)
@@ -76,7 +77,7 @@ def search_source(file_name, string_to_start, string_to_stop):
 
 
 def printListSource(list):
-    with open('/Users/prammitr/Documents/my_projects/python/input_plSql.sql', "r") as text_file:
+    with open('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql', "r") as text_file:
       for line in itertools.islice(text_file, *range_of_src_clms):
         #elements_of_tgt.append((line.rstrip().lstrip()))
         elements_of_src.append((line))
@@ -84,12 +85,12 @@ def printListSource(list):
         
 
 def writeSourceToExcel(list):
-  with open('/Users/prammitr/Documents/my_projects/python/Source.csv','w') as f:
+  with open('/Users/prammitr/Documents/my_projects/python/temp/Source.csv','w') as f:
     f.write('\n'.join(list))   
 
 
  
-search_source('/Users/prammitr/Documents/my_projects/python/input_plSql.sql','$.data[*]', 'ROWCOUNT')
+search_source('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql','$.data[*]', 'ROWCOUNT')
 printListSource(range_of_tgt_clms)
 # Sort elements_of_src list for matching record
 elements_of_src.sort(reverse=False)
@@ -104,9 +105,10 @@ for key, value in (
 
 #csv_file="/Users/prammitr/Documents/my_projects/output.csv"', 'wb') as output:"
 
-with open('/Users/prammitr/Documents/my_projects/python/dict.csv', 'w', newline="") as csv_file:  
+with open('/Users/prammitr/Documents/my_projects/python/temp/dict.csv', 'w', newline="") as csv_file:  
     writer = csv.writer(csv_file)
     for key, value in test_dict.items():
        writer.writerow([key, value])
 
-os.system("awk 'NR%3' /Users/prammitr/Documents/my_projects/python/dict.csv > /Users/prammitr/Documents/my_projects/python/output.csv")
+## Invoking Shell Script to perform File Formating
+subprocess.call(['/Users/prammitr/Documents/my_projects/python/FileFormating.sh']) 

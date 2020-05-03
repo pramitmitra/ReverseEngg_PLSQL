@@ -1,0 +1,1 @@
+FunctionalName,DataType,FilePath,JSONColumnName,PLSQLLogic,TableColumnName
