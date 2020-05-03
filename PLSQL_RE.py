@@ -4,6 +4,14 @@ import itertools
 import os
 import csv
 import subprocess
+import configparser
+
+config = configparser.ConfigParser()
+config.read('pyconfig.ini')
+
+base_path = config['DEFAULT']['BASE_PATH'] 
+print(base_path)
+
 
 range_of_tgt_clms = []
 elements_of_tgt = []
