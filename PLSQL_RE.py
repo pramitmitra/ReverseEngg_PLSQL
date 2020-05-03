@@ -19,7 +19,7 @@ elements_of_tgt = []
 range_of_src_clms = []
 elements_of_src = []
 
-exec(open("/Users/prammitr/Documents/my_projects/python/DownloadGitCode.py").read())
+exec(open(str(base_path) + "/DownloadGitCode.py").read())
 
 def search_target(file_name, string_to_search1, string_to_stop):
     line_number = 0
@@ -37,13 +37,12 @@ def search_target(file_name, string_to_search1, string_to_stop):
  
     # Return list of tuples containing line numbers and lines where string is found
     print (*range_of_tgt_clms)
-    #print (*list_of_results2)
     return range_of_tgt_clms
 
 
 
 def printListTarget(list):
-    with open('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql', "r") as text_file:
+    with open(str(base_path) + '/input/input_plSql.sql', "r") as text_file:
       #for line in itertools.islice(text_file, 15, 38):
       for line in itertools.islice(text_file, *range_of_tgt_clms):
         #elements_of_tgt.append((line.rstrip().lstrip()))
@@ -52,17 +51,15 @@ def printListTarget(list):
         
 
 def writeTargetToExcel(list):
-  with open('/Users/prammitr/Documents/my_projects/python/temp/Target.csv','w') as f:
+  with open(str(base_path) + '/temp/Target.csv','w') as f:
     f.write('\n'.join(list))
 
 
-search_target('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql','insert', 'select')
+search_target(str(base_path) + 'input/input_plSql.sql','insert', 'select')
 printListTarget(range_of_tgt_clms)
 # Sort elements_of_tgt list for matching record
 elements_of_tgt.sort(reverse=False)
 writeTargetToExcel(elements_of_tgt)
-
-
 
 
 def search_source(file_name, string_to_start, string_to_stop):
@@ -85,7 +82,7 @@ def search_source(file_name, string_to_start, string_to_stop):
 
 
 def printListSource(list):
-    with open('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql', "r") as text_file:
+    with open(str(base_path) + 'input/input_plSql.sql', "r") as text_file:
       for line in itertools.islice(text_file, *range_of_src_clms):
         #elements_of_tgt.append((line.rstrip().lstrip()))
         elements_of_src.append((line))
@@ -93,12 +90,11 @@ def printListSource(list):
         
 
 def writeSourceToExcel(list):
-  with open('/Users/prammitr/Documents/my_projects/python/temp/Source.csv','w') as f:
+  with open(str(base_path) + 'temp/Source.csv','w') as f:
     f.write('\n'.join(list))   
 
 
- 
-search_source('/Users/prammitr/Documents/my_projects/python/input/input_plSql.sql','$.data[*]', 'ROWCOUNT')
+search_source(str(base_path) + 'input/input_plSql.sql','$.data[*]', 'ROWCOUNT')
 printListSource(range_of_tgt_clms)
 # Sort elements_of_src list for matching record
 elements_of_src.sort(reverse=False)
@@ -111,12 +107,11 @@ for key, value in (
             [itertools.product((k, ), v) for k, v in test_dict.items()])): 
                 res.append(value) 
 
-#csv_file="/Users/prammitr/Documents/my_projects/output.csv"', 'wb') as output:"
 
-with open('/Users/prammitr/Documents/my_projects/python/temp/dict.csv', 'w', newline="") as csv_file:  
+with open(str(base_path) + 'temp/dict.csv', 'w', newline="") as csv_file:  
     writer = csv.writer(csv_file)
     for key, value in test_dict.items():
        writer.writerow([key, value])
 
 ## Invoking Shell Script to perform File Formating
-subprocess.call(['/Users/prammitr/Documents/my_projects/python/FileFormating.sh']) 
+subprocess.call([str(base_path) + 'FileFormating.sh']) 
