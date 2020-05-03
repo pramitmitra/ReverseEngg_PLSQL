@@ -36,7 +36,7 @@ def search_target(file_name, string_to_search1, string_to_stop):
               break
  
     # Return list of tuples containing line numbers and lines where string is found
-    print (*range_of_tgt_clms)
+    #print (*range_of_tgt_clms)
     return range_of_tgt_clms
 
 
@@ -77,7 +77,7 @@ def search_source(file_name, string_to_start, string_to_stop):
               break
  
     # Return list of tuples containing line numbers and lines where string is found
-    print (*range_of_src_clms)
+    #print (*range_of_src_clms)
     return range_of_src_clms 
 
 
