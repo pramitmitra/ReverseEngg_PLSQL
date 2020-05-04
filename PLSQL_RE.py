@@ -13,7 +13,9 @@ config.read('pyconfig.ini')
 base_path = config['DEFAULT']['BASE_PATH']
 input_path = config['DEFAULT']['INPUT_PATH']
 input_file = config['DEFAULT']['INPUT_FILE']
-log_path = config['DEFAULT']['LOG_PATH'] 
+temp_path = config['DEFAULT']['TEMP_PATH']
+log_path = config['DEFAULT']['LOG_PATH']
+repository = config['DEFAULT']['REPOSITORY'] 
 
 
 range_of_tgt_clms = []
@@ -24,7 +26,7 @@ elements_of_src = []
 
 ## Replacing Python based git clone by bash script
 ##exec(open(str(base_path) + "/DownloadGitCode.py").read())
-output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh'])
+output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh' , str(repository) , str(temp_path)])
 #sys. stdout = open("/Users/prammitr/Documents/my_projects/python/logs/testlog1.log", "w")
 print(output_downloadGit)
 #sys. stdout. close()
@@ -125,5 +127,5 @@ with open(str(base_path) + 'temp/dict.csv', 'w', newline="") as csv_file:
        writer.writerow([key, value])
 
 ## Invoking Shell Script to perform File Formating
-output_FileFormating = subprocess.call([str(base_path) + 'FileFormating.sh']) 
+output_FileFormating = subprocess.call([str(base_path) + 'FileFormating.sh' , str(input_file)]) 
 #print(output_FileFormating)

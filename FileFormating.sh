@@ -1,6 +1,10 @@
 #! /bin/bash
 # Supporting module to format output file.
 
+file_name=$1
+repository=$2
+echo $file_name
+echo $repository
 
 ## Removing Control M Character
 awk 'NR%3' /Users/prammitr/Documents/my_projects/python/temp/dict.csv > /Users/prammitr/Documents/my_projects/python/temp/temp1_output_with_comma.csv
@@ -23,8 +27,12 @@ cat /Users/prammitr/Documents/my_projects/python/temp/temp5.csv | sed -e 's/^[ \
 sed 's/ \{1,\}/,/g' /Users/prammitr/Documents/my_projects/python/temp/temp6.csv > /Users/prammitr/Documents/my_projects/python/temp/temp7.csv
 
 ## Adding Static Header
-cat /Users/prammitr/Documents/my_projects/python/static_hederFile.txt > /Users/prammitr/Documents/my_projects/python/output/STMMapping.csv
-cat /Users/prammitr/Documents/my_projects/python/temp/temp7.csv >> /Users/prammitr/Documents/my_projects/python/output/STMMapping.csv
+#cat /Users/prammitr/Documents/my_projects/python/static_hederFile.txt > /Users/prammitr/Documents/my_projects/python/output/STMMapping.csv
+#cat /Users/prammitr/Documents/my_projects/python/temp/temp7.csv >> /Users/prammitr/Documents/my_projects/python/output/STMMapping.csv
+cat /Users/prammitr/Documents/my_projects/python/static_hederFile.txt > /Users/prammitr/Documents/my_projects/python/output/${file_name}.csv
+cat /Users/prammitr/Documents/my_projects/python/temp/temp7.csv >> /Users/prammitr/Documents/my_projects/python/output/${file_name}.csv
+
+
 
 ## Cleanup
 rm -rf /Users/prammitr/Documents/my_projects/python/temp/*
