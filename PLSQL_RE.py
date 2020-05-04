@@ -2,6 +2,7 @@
 #!/usr/bin/env python
 import itertools
 import os
+import sys
 import csv
 import subprocess
 import configparser
@@ -9,8 +10,10 @@ import configparser
 config = configparser.ConfigParser()
 config.read('pyconfig.ini')
 
-base_path = config['DEFAULT']['BASE_PATH'] 
-print(base_path)
+base_path = config['DEFAULT']['BASE_PATH']
+input_path = config['DEFAULT']['INPUT_PATH']
+input_file = config['DEFAULT']['INPUT_FILE']
+log_path = config['DEFAULT']['LOG_PATH'] 
 
 
 range_of_tgt_clms = []
@@ -19,7 +22,13 @@ elements_of_tgt = []
 range_of_src_clms = []
 elements_of_src = []
 
-exec(open(str(base_path) + "/DownloadGitCode.py").read())
+## Replacing Python based git clone by bash script
+##exec(open(str(base_path) + "/DownloadGitCode.py").read())
+output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh'])
+#sys. stdout = open("/Users/prammitr/Documents/my_projects/python/logs/testlog1.log", "w")
+print(output_downloadGit)
+#sys. stdout. close()
+
 
 def search_target(file_name, string_to_search1, string_to_stop):
     line_number = 0
@@ -40,9 +49,8 @@ def search_target(file_name, string_to_search1, string_to_stop):
     return range_of_tgt_clms
 
 
-
 def printListTarget(list):
-    with open(str(base_path) + '/input/input_plSql.sql', "r") as text_file:
+    with open(str(input_path) + str(input_file), "r") as text_file:
       #for line in itertools.islice(text_file, 15, 38):
       for line in itertools.islice(text_file, *range_of_tgt_clms):
         #elements_of_tgt.append((line.rstrip().lstrip()))
@@ -114,4 +122,5 @@ with open(str(base_path) + 'temp/dict.csv', 'w', newline="") as csv_file:
        writer.writerow([key, value])
 
 ## Invoking Shell Script to perform File Formating
-subprocess.call([str(base_path) + 'FileFormating.sh']) 
+output_FileFormating = subprocess.call([str(base_path) + 'FileFormating.sh']) 
+#print(output_FileFormating)
