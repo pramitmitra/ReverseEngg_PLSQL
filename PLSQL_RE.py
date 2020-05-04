@@ -63,7 +63,8 @@ def writeTargetToExcel(list):
     f.write('\n'.join(list))
 
 
-search_target(str(base_path) + 'input/input_plSql.sql','insert', 'select')
+#search_target(str(base_path) + 'input/input_plSql.sql','insert', 'select')
+search_target(str(input_path) + str(input_file),'insert', 'select')
 printListTarget(range_of_tgt_clms)
 # Sort elements_of_tgt list for matching record
 elements_of_tgt.sort(reverse=False)
@@ -90,7 +91,8 @@ def search_source(file_name, string_to_start, string_to_stop):
 
 
 def printListSource(list):
-    with open(str(base_path) + 'input/input_plSql.sql', "r") as text_file:
+    #with open(str(base_path) + 'input/input_plSql.sql', "r") as text_file:
+    with open(str(input_path) + str(input_file), "r") as text_file:
       for line in itertools.islice(text_file, *range_of_src_clms):
         #elements_of_tgt.append((line.rstrip().lstrip()))
         elements_of_src.append((line))
@@ -102,7 +104,8 @@ def writeSourceToExcel(list):
     f.write('\n'.join(list))   
 
 
-search_source(str(base_path) + 'input/input_plSql.sql','$.data[*]', 'ROWCOUNT')
+#search_source(str(base_path) + 'input/input_plSql.sql','$.data[*]', 'ROWCOUNT')
+search_source(str(input_path) + str(input_file),'$.data[*]', 'ROWCOUNT')
 printListSource(range_of_tgt_clms)
 # Sort elements_of_src list for matching record
 elements_of_src.sort(reverse=False)
