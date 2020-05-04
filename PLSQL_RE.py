@@ -24,13 +24,9 @@ elements_of_tgt = []
 range_of_src_clms = []
 elements_of_src = []
 
-## Replacing Python based git clone by bash script
-##exec(open(str(base_path) + "/DownloadGitCode.py").read())
-output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh' , str(repository) , str(temp_path)])
-#sys. stdout = open("/Users/prammitr/Documents/my_projects/python/logs/testlog1.log", "w")
-print(output_downloadGit)
-#sys. stdout. close()
-
+## Invoking Shell Script to perform Git Clone
+output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh' , str(repository) , str(temp_path) , str(input_file) , str(input_path)])
+#print(output_downloadGit)
 
 def search_target(file_name, string_to_search1, string_to_stop):
     line_number = 0
@@ -127,5 +123,5 @@ with open(str(base_path) + 'temp/dict.csv', 'w', newline="") as csv_file:
        writer.writerow([key, value])
 
 ## Invoking Shell Script to perform File Formating
-output_FileFormating = subprocess.call([str(base_path) + 'FileFormating.sh' , str(input_file)]) 
+output_FileFormating = subprocess.call([str(base_path) + 'FileFormating.sh' , str(input_file) , str(base_path) , str(temp_path)]) 
 #print(output_FileFormating)

@@ -6,15 +6,13 @@ input_file=$3
 input_path=$4
 echo "Git Repo to be downloaded : $repository"
 
-
-#rm -rf /Users/prammitr/Documents/my_projects/python/temp
+# Clean-up before git clone
 rm -rf $localFolder
 
-#git clone "$repository" "$localFolder"
+#Git clone
 git clone "$repository" "$localFolder"
 echo "File has been downloaded at $localFolder"
 
-#cp /Users/prammitr/Documents/my_projects/python/temp/input_plSql.sql /Users/prammitr/Documents/my_projects/python/input
+#Copy only relevant PL/SQL file to input_path
 cp ${localFolder}/${input_file} ${input_path}
-#rm -rf /Users/prammitr/Documents/my_projects/python/ReadingNotes
 echo "$input_file has been moved to $input_path"

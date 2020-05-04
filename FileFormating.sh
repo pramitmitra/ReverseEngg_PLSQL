@@ -2,39 +2,34 @@
 # Supporting module to format output file.
 
 file_name=$1
-repository=$2
-echo $file_name
-echo $repository
+base_path=$2
+temp_path=$3
+
 
 ## Removing Control M Character
-awk 'NR%3' /Users/prammitr/Documents/my_projects/python/temp/dict.csv > /Users/prammitr/Documents/my_projects/python/temp/temp1_output_with_comma.csv
+awk 'NR%3' ${temp_path}/dict.csv > ${temp_path}/temp1_output_with_comma.csv
 ## Comma Remove
-sed 's/[,]//g' /Users/prammitr/Documents/my_projects/python/temp/temp1_output_with_comma.csv > /Users/prammitr/Documents/my_projects/python/temp/temp2.csv
+sed 's/[,]//g' ${temp_path}/temp1_output_with_comma.csv > ${temp_path}/temp2.csv
 
 ## Single Quote Remove
-sed "s/'/ /g" /Users/prammitr/Documents/my_projects/python/temp/temp2.csv > /Users/prammitr/Documents/my_projects/python/temp/temp3.csv
+sed "s/'/ /g" ${temp_path}/temp2.csv > ${temp_path}/temp3.csv
 
 ## Double Quotes Remove
-sed 's/\"//g' /Users/prammitr/Documents/my_projects/python/temp/temp3.csv > /Users/prammitr/Documents/my_projects/python/temp/temp4.csv
+sed 's/\"//g' ${temp_path}/temp3.csv > ${temp_path}/temp4.csv
 
 ## Merge adjucent two lines
-awk 'NR%2{printf "%s ",$0;next;}1' /Users/prammitr/Documents/my_projects/python/temp/temp4.csv > /Users/prammitr/Documents/my_projects/python/temp/temp5.csv
+awk 'NR%2{printf "%s ",$0;next;}1' ${temp_path}/temp4.csv > ${temp_path}/temp5.csv
 
 ## Remove leading spaces
-cat /Users/prammitr/Documents/my_projects/python/temp/temp5.csv | sed -e 's/^[ \t]*//' > /Users/prammitr/Documents/my_projects/python/temp/temp6.csv
+cat ${temp_path}/temp5.csv | sed -e 's/^[ \t]*//' > ${temp_path}/temp6.csv
 
 ## Replacing Space delimited with comma seperated
-sed 's/ \{1,\}/,/g' /Users/prammitr/Documents/my_projects/python/temp/temp6.csv > /Users/prammitr/Documents/my_projects/python/temp/temp7.csv
+sed 's/ \{1,\}/,/g' ${temp_path}/temp6.csv > ${temp_path}/temp7.csv
 
 ## Adding Static Header
-#cat /Users/prammitr/Documents/my_projects/python/static_hederFile.txt > /Users/prammitr/Documents/my_projects/python/output/STMMapping.csv
-#cat /Users/prammitr/Documents/my_projects/python/temp/temp7.csv >> /Users/prammitr/Documents/my_projects/python/output/STMMapping.csv
-cat /Users/prammitr/Documents/my_projects/python/static_hederFile.txt > /Users/prammitr/Documents/my_projects/python/output/${file_name}.csv
-cat /Users/prammitr/Documents/my_projects/python/temp/temp7.csv >> /Users/prammitr/Documents/my_projects/python/output/${file_name}.csv
-
-
+cat ${base_path}/static_hederFile.txt > ${base_path}/output/${file_name}.csv
+cat ${temp_path}/temp7.csv >> ${base_path}/output/${file_name}.csv
 
 ## Cleanup
-rm -rf /Users/prammitr/Documents/my_projects/python/temp/*
-
+rm -rf ${temp_path}/*
 
