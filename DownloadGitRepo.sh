@@ -11,8 +11,8 @@ rm -rf $localFolder
 
 #Git clone
 git clone "$repository" "$localFolder"
-echo "File has been downloaded at $localFolder"
+echo "File ${input_file} has been downloaded at $localFolder"
 
 #Copy only relevant PL/SQL file to input_path
 cp ${localFolder}/${input_file} ${input_path}
-echo "$input_file has been moved to $input_path"
+echo "$input_file has been moved to $input_path for processing"

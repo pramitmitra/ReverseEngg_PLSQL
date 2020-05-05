@@ -5,7 +5,7 @@ file_name=$1
 base_path=$2
 temp_path=$3
 
-
+echo "PL/SQL file: ${file_name} formating starting at ${temp_path}"
 ## Removing Control M Character
 awk 'NR%3' ${temp_path}/dict.csv > ${temp_path}/temp1_output_with_comma.csv
 ## Comma Remove
@@ -27,8 +27,10 @@ cat ${temp_path}/temp5.csv | sed -e 's/^[ \t]*//' > ${temp_path}/temp6.csv
 sed 's/ \{1,\}/,/g' ${temp_path}/temp6.csv > ${temp_path}/temp7.csv
 
 ## Adding Static Header
-cat ${base_path}/static_hederFile.txt > ${base_path}/output/${file_name}.csv
-cat ${temp_path}/temp7.csv >> ${base_path}/output/${file_name}.csv
+cat ${base_path}/static_hederFile.txt > ${base_path}/output/STM_${file_name}.csv
+cat ${temp_path}/temp7.csv >> ${base_path}/output/STM_${file_name}.csv
+
+echo "STM file STM_${file_name}.csv is available at ${base_path}/output"
 
 ## Cleanup
 rm -rf ${temp_path}/*

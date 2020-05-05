@@ -1,1 +1,1 @@
-FunctionalName,DataType,FilePath,JSONColumnName,PLSQLLogic,TableColumnName
+FunctionalName,DataType,FilePath,JSONColumnName,SRCSideLogic,ON,TGTSideLogic,TableColumnName
