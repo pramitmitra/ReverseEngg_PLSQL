@@ -1,0 +1,6 @@
+FunctionalName,DataType,FilePath,JSONColumnName,SRCSideLogic,ON,TGTSideLogic,TableColumnName
+canonical_name,varchar2(512),path,$.Canonical_name,error,on,error,canonical_name
+canonical_short_code,varchar2(512),path,$.Canonical_short_code,error,on,error,canonical_short_code
+created_at_date,varchar2(512),path,$.Created_at_date,error,on,error,created_at_date
+description,varchar2(512),path,$.Description,error,on,error,description
+updated_at_date,varchar2(512),path,$.Updated_at_date,error,on,error,updated_at_date
