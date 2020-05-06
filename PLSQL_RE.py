@@ -25,7 +25,8 @@ range_of_src_clms = []
 elements_of_src = []
 
 ## Invoking Shell Script to perform Git Clone
-output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh' , str(repository) , str(temp_path) , str(input_file) , str(input_path)])
+#output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh' , str(repository) , str(temp_path) , str(input_file) , str(input_path)])
+output_downloadGit = subprocess.call([str(base_path) + 'DownloadGitRepo.sh' , str(repository) , str(input_path) , str(input_file) , str(input_path)])
 #print(output_downloadGit)
 
 def search_target(file_name, string_to_search1, string_to_stop):
