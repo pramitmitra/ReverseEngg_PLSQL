@@ -7,9 +7,11 @@ import csv
 import subprocess
 import configparser
 
+#Load configparser & read fron projet specific config file
 config = configparser.ConfigParser()
 config.read('pyconfig.ini')
 
+#Read config variables
 base_path = config['DEFAULT']['BASE_PATH']
 input_path = config['DEFAULT']['INPUT_PATH']
 input_file = config['DEFAULT']['INPUT_FILE']
@@ -17,7 +19,7 @@ temp_path = config['DEFAULT']['TEMP_PATH']
 log_path = config['DEFAULT']['LOG_PATH']
 repository = config['DEFAULT']['REPOSITORY'] 
 
-
+#Define source & target list variables
 range_of_tgt_clms = []
 elements_of_tgt = []
 
