@@ -1,0 +1,2 @@
+#How to Check git remote branch
+git ls-remote 
