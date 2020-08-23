@@ -1,3 +1,6 @@
+#https://towardsdatascience.com/mastering-dates-and-timestamps-in-pandas-and-python-in-general-5b8c6edcc50c
+
+#https://wiki.python.org/moin/SimplePrograms
 # print ('Hello, world!')
 
 #2 lines: Input, assignment
@@ -37,9 +40,35 @@
 
 
 #8  lines: Command line arguments, exception handling
-import sys
-try:
-    total = sum(int(arg) for arg in sys.argv[1:])
-    print ('sum =', total)
-except ValueError:
-    print ('Please supply integer arguments')
+# import sys
+# try:
+#     total = sum(int(arg) for arg in sys.argv[1:])
+#     print ('sum =', total)
+# except ValueError:
+#     print ('Please supply integer arguments')
+
+#10 lines: Time, conditionals, from..import, for..else
+# from time import localtime
+
+# activities = {8: 'Sleeping',
+#               9: 'Commuting',
+#               17: 'Working',
+#               18: 'Commuting',
+#               20: 'Eating',
+#               22: 'Resting' }
+
+# time_now = localtime()
+# hour = time_now.tm_hour
+
+# for activity_time in sorted(activities.keys()):
+#     if hour < activity_time:
+#         print (activities[activity_time])
+#         break
+# else:
+#     print ('Unknown, AFK or sleeping!')
+
+
+
+import pandas as pd
+df = pd.DataFrame({'date': ['2018-08-09 11:10:55','2019-03-02 13:15:21']})
+print (df)
