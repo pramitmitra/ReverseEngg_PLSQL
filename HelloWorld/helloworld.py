@@ -5,7 +5,7 @@ __version__='0.1.0'
 import re
 import requests
 
-URL = 'https://www.learnpython.org/en/Hello,_World!'
+URL = 'https://en.wikipedia.org/wiki/%22Hello,_World!%22_program'
 
 
 def do_hello():
